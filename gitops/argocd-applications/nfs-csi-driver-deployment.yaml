@@ -45,6 +45,10 @@ spec:
                   reclaimPolicy: Delete
                   volumeBindingMode: Immediate
                   allowVolumeExpansion: True
+                volumeSnapshotClass:
+                  create: false
+                  name: csi-nfs-snapclass
+                  deletionPolicy: Delete
   sources: []
   project: default
   syncPolicy:

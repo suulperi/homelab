@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: windows-automation-deployment
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/suulperi/homelab.git
+    targetRevision: HEAD
+    path: gitops/windows-automation
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: windows-automation
+  syncPolicy:
+    automated:
+      allowEmpty: true

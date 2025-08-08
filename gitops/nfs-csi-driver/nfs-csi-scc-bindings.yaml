@@ -1,0 +1,25 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: csi-nfs-controller-sa-privileged-scc-binding 
+subjects:
+  - kind: ServiceAccount
+    name: csi-nfs-controller-sa
+    namespace: openshift-csi-driver-nfs
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: 'system:openshift:scc:privileged'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: csi-nfs-node-sa-privileged-scc-binding 
+subjects:
+  - kind: ServiceAccount
+    name: csi-nfs-node-sa
+    namespace: openshift-csi-driver-nfs
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: 'system:openshift:scc:privileged'

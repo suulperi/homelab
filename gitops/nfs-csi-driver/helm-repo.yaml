@@ -1,0 +1,10 @@
+apiVersion: helm.openshift.io/v1beta1
+kind: HelmChartRepository
+metadata:
+  name: kubernetes-csi-helm-repository
+spec:
+  connectionConfig:
+    url: >-
+      https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
+  description: Repository for installing Kubernetes CSI NFS Driver
+  name: Kubernetes CSI Helm Repository

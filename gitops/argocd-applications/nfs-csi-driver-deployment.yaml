@@ -1,0 +1,53 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nfs-csi-driver-deployment
+spec:
+  destination:
+    namespace: openshift-csi-driver-nfs
+    server: https://kubernetes.default.svc
+  source:
+    path: ''
+    repoURL: >-
+      https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
+    targetRevision: 4.11.0
+    chart: csi-driver-nfs
+    helm:
+      values: |2-
+                controller:
+                  resources:
+                    csiProvisioner:
+                      limits:
+                        memory: 1024Mi
+                    csiSnapshotter:
+                      limits:
+                        memory: 1024Mi
+                    livenessProbe:
+                      limits:
+                        memory: 1024Mi
+                    nfs:
+                      limits:
+                        memory: 1024Mi
+                externalSnapshotter:
+                  enabled: true
+                  customResourceDefinitions:
+                    enabled: false
+                storageClass:
+                  create: true
+                  name: nfs-csi
+                  annotations:
+                    storageclass.kubevirt.io/is-default-virt-class: "true"
+                    storageclass.kubernetes.io/is-default-class: "true"
+                  parameters:
+                    server: 192.168.86.5
+                    share: /data/nfs/ocp
+                    subDir: ${pvc.metadata.namespace}-${pvc.metadata.name}-${pv.metadata.name}    
+                  reclaimPolicy: Delete
+                  volumeBindingMode: Immediate
+                  allowVolumeExpansion: True
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false

@@ -2,13 +2,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nmstate-operator-deployment
+  name: nmstate-instance-deployment
 spec:
   project: default
   source:
     repoURL: https://github.com/suulperi/homelab.git 
     targetRevision: HEAD
-    path: gitops/nmstate-instance
+    path: gitops/nmstate/instance
   destination:
     server: "https://kubernetes.default.svc"
     namespace: openshift-nmstate

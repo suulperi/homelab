@@ -2,13 +2,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: openshift-virtualization-deployment
+  name: openshift-virtualization-operator-deployment
 spec:
   project: default
   source:
     repoURL: https://github.com/suulperi/homelab.git
     targetRevision: HEAD
-    path: gitops/openshift-virtualization
+    path: gitops/openshift-virtualization/operator
   destination:
     server: https://kubernetes.default.svc
     namespace: openshift-cnv

@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: acm-operator-deployment
+  name: acm-instance-deployment
 spec:
   project: default
   source:

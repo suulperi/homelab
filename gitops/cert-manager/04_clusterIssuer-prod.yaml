@@ -16,9 +16,9 @@ spec:
           accessKeyIDSecretRef:
             name: "aws-secret"
             key: "awsAccessKeyID"
-          hostedZoneIDSecretRef:
-            name: "aws-secret"
-            key: "awsHostedZoneID"
           secretAccessKeySecretRef:
             name: "aws-secret"
             key: "awsSecretAccessKey"
+          hostedZoneIDSecretRef:
+            name: "aws-secret"
+            key: "awsHostedZoneID"

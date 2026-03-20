@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: default-ingress-certificate-prod
+  namespace: openshift-ingress
+spec:
+  isCA: false
+  commonName: "apps.ocp.sohlberg.io" 
+  secretName: default-ingress-certificate-prod-secret
+  dnsNames:
+  - "apps.ocp.sohlberg.io"
+  - "*.apps.ocp.sohlberg.io"
+  issuerRef:
+    name: lets-encrypt-production
+    kind: ClusterIssuer

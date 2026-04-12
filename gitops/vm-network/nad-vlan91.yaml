@@ -1,0 +1,16 @@
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: vlan-91
+  namespace: default
+spec:
+  config: |-
+    {
+        "cniVersion": "0.4.0",
+        "name": "vlan91",
+        "type": "ovn-k8s-cni-overlay",
+        "netAttachDefName": "default/vlan-91",
+        "physicalNetworkName": "homelab", 
+        "topology": "localnet",
+        "vlanID": 91
+    }
